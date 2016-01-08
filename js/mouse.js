@@ -1,24 +1,37 @@
-var MouseWatcher = function(){
+var MouseManager = {
     
-    this.mouseX = 0;
-    this.mouseY = 0;
-    this.clicked = false;
+    mouseX: 0,
+    mouseY: 0,
     
-    this.originX = 0;
-    this.originY = 0;
-
-    document.addEventListener("mousemove", this.onMouseMove, false);
+    mouseState: "up",
     
-}
-
-MouseWatcher.prototype = {
-    constructor: MouseWatcher,
     onMouseMove: function(event){
         event.preventDefault();
-        mouseX = event.clientX - this.originX;
-        mouseY = event.clientY - this.originY;
-        clicked = event.isMouseDown;
-    }
+        MouseManager.mouseX = event.offsetX;
+        MouseManager.mouseY = Scary.height - event.offsetY;//correct the mouse axis to be the same as the game axis
+    },
+    
+    onMouseDown: function(event){
+        event.preventDefault();
+        MouseManager.mouseState = "down";
+    },
+    
+    onMouseUp: function(event){
+        event.preventDefault();
+        MouseManager.mouseState = "up";
+    },
+    
+    onRightClick: function(event){
+        event.preventDefault();
+    },
+    
+	injectInto: function(domElement){
+		domElement.addEventListener('mousemove', MouseManager.onMouseMove);
+		domElement.addEventListener('mousedown', MouseManager.onMouseDown);
+		domElement.addEventListener('mouseup', MouseManager.onMouseUp);
+		domElement.addEventListener('contextmenu', MouseManager.onRightClick);
+	}
+    
 }
 
-var mouse = new MouseWatcher();
+Scary.mouse = MouseManager;

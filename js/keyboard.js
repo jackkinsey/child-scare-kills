@@ -2,7 +2,7 @@ var keyboard = null;
 
 keyboard = new THREEx.KeyboardState();
 
-var InputManager = {
+var KeyboardManager = {
 
     handlePressInput: function(event) {
 		// only handle input when no other DOM element has focus.
@@ -82,10 +82,10 @@ var InputManager = {
 	},
 
 	injectInto: function(domElement) {
-		domElement.addEventListener('keydown', InputManager.handlePressInput);
-		domElement.addEventListener('keyup', InputManager.handleReleaseInput);
+		domElement.addEventListener('keydown', KeyboardManager.handlePressInput);
+		domElement.addEventListener('keyup', KeyboardManager.handleReleaseInput);
 	},
 
 };
 
-InputManager.injectInto(document);
+Scary.keyboard = KeyboardManager;

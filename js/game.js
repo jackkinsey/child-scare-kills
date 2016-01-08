@@ -1,6 +1,6 @@
-var Game = function(options){
+var Game = function(props){
 
-    this.objects = options["objects"];
+    this.props = props;
     
 }
 
@@ -28,5 +28,16 @@ GameList.prototype = {
             this.list[index].build(context);
             this.built = index;
         }
+        else if(typeof mode == "number" && mode < this.list.length){
+            this.list[mode].build(context);
+            this.built = mode;
+        }
+    },
+    addGame: function(game){
+        if(game instanceof Game){
+            this.list.push(game);
+        }
     }
 }
+
+var games = new GameList();

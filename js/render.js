@@ -11,6 +11,9 @@ var Context = function(width, height, worldVar){
     this.clock = new THREE.Clock();
     this.delta = 0;
     
+    this.mouse = null;
+    this.keyboard = null;
+    
     this.worldVar = worldVar;
     
     this.DOM = {};
@@ -46,12 +49,15 @@ Context.prototype = {
     
         return camera;
     },
-    addSprite: function(width, height, file){
+    addSprite: function(width, height, file, pos){
         
         var tex = new THREE.ImageUtils.loadTexture(file);
         var mat = new THREE.SpriteMaterial({map: tex});
         var spr = new THREE.Sprite(mat);
         spr.scale.set(width, height, 1);
+        if(pos){
+            spr.position.set(pos.x, pos.y, pos.z);
+        }
         this.scene.add(spr);
         
         return spr;
@@ -64,11 +70,14 @@ var draw = function(){
     requestAnimationFrame(draw);
     
     Scary.delta = Scary.clock.getDelta();
+    games.update(Scary.mouse, Scary.delta);
     
     Scary.renderer.render(Scary.scene, Scary.camera);
 }
 
 var initialize = function(){
     document.getElementById("gameholder").appendChild(Scary.renderer.domElement);
+    Scary.mouse.injectInto(Scary.renderer.domElement);
+    games.buildGame(0, Scary);
     draw();
 }
