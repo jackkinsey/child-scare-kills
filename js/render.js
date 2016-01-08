@@ -6,7 +6,7 @@ var Context = function(width, height, worldVar){
     this.camera = this.cameraInit(this.width, this.height);
     this.scene = new THREE.Scene();
     this.renderer = new THREE.WebGLRenderer();
-    renderer.setSize(this.width, this.height);
+    this.renderer.setSize(this.width, this.height);
     
     this.clock = new THREE.Clock();
     this.delta = 0;
@@ -55,18 +55,20 @@ Context.prototype = {
         this.scene.add(spr);
         
         return spr;
-    },
-    draw: function(){
-        requestAnimationFrame(this.draw);
-    
-        this.delta = this.clock.getDelta();
-        
-        this.renderer.render(this.scene, this.camera);
     }
 }
 
+var Scary = new Context(1000, 600);
+
+var draw = function(){
+    requestAnimationFrame(draw);
+    
+    Scary.delta = Scary.clock.getDelta();
+    
+    Scary.renderer.render(Scary.scene, Scary.camera);
+}
+
 var initialize = function(){
-    document.getElementById("gameholder").appendChild(renderer.domElement);
-    document.addEventListener("mousemove", onMouseMove, false);
+    document.getElementById("gameholder").appendChild(Scary.renderer.domElement);
     draw();
 }

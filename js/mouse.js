@@ -6,6 +6,8 @@ var MouseWatcher = function(){
     
     this.originX = 0;
     this.originY = 0;
+
+    document.addEventListener("mousemove", this.onMouseMove, false);
     
 }
 
@@ -18,3 +20,5 @@ MouseWatcher.prototype = {
         clicked = event.isMouseDown;
     }
 }
+
+var mouse = new MouseWatcher();

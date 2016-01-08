@@ -1,31 +1,32 @@
 var feedBaby = new Game({
     objects: {
         baby: {
-            x: 100,
-            y: 100,
-            spr: Context.addSprite("img/baby.png")
+            widthX: 100,
+            widthY: 100,
+            spr: "img/baby.png"
         },
         food: {
-            x: 500,
-            y: 300,
+            widthX: 500,
+            widthY: 300,
             lift: false,
-            spr: Context.addSprite("img/food.png")
+            spr: "img/food.png"
         }
     }
 })
 
-feedBaby.build = function () {
-    addSprite(this.baby.spr);
-    addSprite(this.food.spr);
+feedBaby.build = function(context) {
+    context.addSprite(this.objects.baby.widthX, this.objects.baby.widthY, this.objects.baby.spr);
+    context.addSprite(this.objects.food.widthX, this.objects.food.widthY, this.objects.food.spr);
 };
 
-feedBaby.update = function () {
-    if (Math.sqrt(Math.pow(this.food.x - mouseX,2) + Math.pow(this.food.y - mouseY,2)) < 32) this.food.lift = clicked;
-    if (this.food.lift) {
-        this.food.x = mouseX;
-        this.food.y = mouseY;
+feedBaby.update = function(mouse, delta) {
+    if (Math.sqrt(Math.pow(this.objects.food.x - mouse.mouseX, 2) + Math.pow(this.objects.food.y - mouse.mouseY, 2)) < 32) this.objects.food.lift = mouse.clicked;
+    if (this.objects.food.lift) {
+        this.objects.food.x = mouse.mouseX;
+        this.objects.food.y = mouse.mouseY;
     }
-    if (Math.sqrt(Math.pow(this.food.x - this.baby.x,2) + Math.pow(this.food.y - this.baby.y,2)) < 32 && !this.baby.lift) {
+    if (Math.sqrt(Math.pow(this.objects.food.x - this.objects.baby.x,2) + Math.pow(this.objects.food.y - this.objects.baby.y,2)) < 32 && !this.objects.baby.lift) {
         //TODO minigame completion code
     }
 };
+
