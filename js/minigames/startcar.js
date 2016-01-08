@@ -1,4 +1,4 @@
-/* 
+/*
  * Liam McFalls
  */
 
@@ -6,11 +6,11 @@ var startCar = new Game({
     
 })
 
-feedBaby.build = function(context) {
+startCar.build = function(context) {
     
 };
 
-feedBaby.update = function(mouse, delta) {
+startCar.update = function(mouse, delta) {
     if (Math.sqrt(Math.pow(this.props.food.posX - mouse.mouseX, 2) + Math.pow(this.props.food.posY - mouse.mouseY, 2)) < this.props.tolerance){
         this.props.food.lift = mouse.mouseState == "down" ? true : false;
     }
@@ -25,4 +25,4 @@ feedBaby.update = function(mouse, delta) {
     }
 };
 
-games.addGame(feedBaby);
+//games.addGame(startCar);

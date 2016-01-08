@@ -3,6 +3,12 @@ var keyboard = null;
 keyboard = new THREEx.KeyboardState();
 
 var KeyboardManager = {
+    
+    left: false,
+    right: false,
+    up: false,
+    down: false,
+    
 
     handlePressInput: function(event) {
 		// only handle input when no other DOM element has focus.
@@ -15,69 +21,38 @@ var KeyboardManager = {
         
         if (keyboard.eventMatches(event, 'left')) {
             event.preventDefault();
-            player.rotate(Math.PI);
-            player.shoot("left", bulletSet);
+            KeyboardManager.left = true;
         }
         if (keyboard.eventMatches(event, 'right')) {
             event.preventDefault();
-            player.rotate(0);
-            player.shoot("right", bulletSet);
+            KeyboardManager.right = true;
         }
         if (keyboard.eventMatches(event, 'up')) {
             event.preventDefault();
-            player.rotate(Math.PI/2);
-            player.shoot("up", bulletSet);
+            KeyboardManager.up = true;
         }
         if (keyboard.eventMatches(event, 'down')) {
             event.preventDefault();
-            player.rotate(3*Math.PI/2);
-            player.shoot("down", bulletSet);
+            KeyboardManager.down = true;
         }
-        
-        if (keyboard.eventMatches(event, 'a')) {
-            event.preventDefault();
-            player.move("left");
-        }
-        if (keyboard.eventMatches(event, 'd')) {
-            event.preventDefault();
-            player.move("right");
-        }
-        if (keyboard.eventMatches(event, 'w')) {
-            event.preventDefault();
-            player.move("up");
-        }
-        if (keyboard.eventMatches(event, 's')) {
-            event.preventDefault();
-            player.move("down");
-        }
-        
-    	if ( keyboard.eventMatches(event, 'z') ||
-			 keyboard.eventMatches(event, 'space') ||
-	 		 keyboard.eventMatches(event, 'enter')) {
-      		event.preventDefault();
-            //move code
-    	}
-		if ( keyboard.eventMatches(event, 'x')) {
-			event.preventDefault();
-            //move code
-		}
     },
 
 	handleReleaseInput: function(event) {
-		if ( keyboard.eventMatches(event, 'z') ||
-	 		 keyboard.eventMatches(event, 'x') ||
-	 	     keyboard.eventMatches(event, 'space') ) {
-			event.preventDefault();
-		}
-		if (keyboard.eventMatches(event, 'a') ||
-		    keyboard.eventMatches(event, 'd')) {
+        if (keyboard.eventMatches(event, 'left')){
             event.preventDefault();
-            player.move("clear_x");
+            KeyboardManager.left = false;
         }
-        if (keyboard.eventMatches(event, 'w') ||
-            keyboard.eventMatches(event, 's')){
+        if (keyboard.eventMatches(event, 'right')){
             event.preventDefault();
-            player.move("clear_y");
+            KeyboardManager.right = false;
+        }
+        if (keyboard.eventMatches(event, 'up')){
+            event.preventDefault();
+            KeyboardManager.up = false;
+        }
+        if (keyboard.eventMatches(event, 'down')){
+            event.preventDefault();
+            KeyboardManager.down = false;
         }
 	},
 
