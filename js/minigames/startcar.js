@@ -1,4 +1,4 @@
-/* 
+/*
  * Liam McFalls
  */
 
@@ -14,29 +14,32 @@ var startCar = new Game({
         src: "img/keyhole.png",
         spr: null
     }
-})
+});
 
-feedBaby.build = function(context) {
-    this.props.keyhole.spr = context.addSprite(this.props.keyhole.widthX, this.props.baby.widthY, this.props.baby.src, {x: this.props.baby.posX,
-                                                                                                                  y: this.props.baby.posY,
-                                                                                                                  z: this.props.baby.zIndex});
+startCar.build = function(context) {
+        this.props.keyhole.spr = context.addSprite(this.props.keyhole.widthX, this.props.keyhole.widthY, this.props.keyhole.src, {x: this.props.keyhole.posX,
+                                                                                                                  y: this.props.keyhole.posY,
+                                                                                                                  z: this.props.keyhole.zIndex});
 };
 
-feedBaby.update = function(mouse, delta) {
-    if (keyboard.d == down && this.props.keyhole.rot < Math.PI / 2) {
-        this.props.keyhole.rot += (Math.PI / 16)*delta;
-        this.props.keyhole.spr.material.rotation = this.props.keyhole.rot;
-    } else if (keyboard.d == up && this.props.keyhole.rot > 0) {
-        this.props.keyhole.rot -= (Math.PI / 16)*delta;
-        this.props.keyhole.spr.material.rotation = this.props.keyhole.rot;
+startCar.update = function(mouse, delta) {
+    if (Scary.keyboard.d && this.props.keyhole.rot < Math.PI / 2) {
+        this.props.keyhole.rot += Math.PI*delta;
+        this.props.keyhole.spr.material.rotation = -this.props.keyhole.rot;
+    } else if (!Scary.keyboard.d && this.props.keyhole.rot > 0) {
+        this.props.keyhole.rot -= (Math.PI / 2)*delta;
+        this.props.keyhole.spr.material.rotation = -this.props.keyhole.rot;
+        this.props.keyhole.on = false;
+    } else if (Scary.keyboard.d) {
+        this.props.keyhole.on = true;
     } else {
-        this.props.keyhole.on = (this.props.keyhole == 0) ? false : true;
+        this.props.keyhole.on = false;
     }
     
-    if (keyboard.space == down) {
-        if (this.props.keyhole.on); //win
-        else; //lose
+    if (Scary.keyboard.space) {
+        if (this.props.keyhole.on) console.log('you win!'); //win
+        else console.log('you lose.'); //lose
     }
 };
 
-games.addGame(feedBaby);
+games.addGame(startCar);

@@ -78,6 +78,7 @@ var draw = function(){
 var initialize = function(){
     document.getElementById("gameholder").appendChild(Scary.renderer.domElement);
     Scary.mouse.injectInto(Scary.renderer.domElement);
-    games.buildGame(0, Scary);
+    Scary.keyboard.injectInto(document);
+    games.buildGame(1, Scary);
     draw();
 }

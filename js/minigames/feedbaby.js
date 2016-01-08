@@ -18,7 +18,7 @@ var feedBaby = new Game({
         src: "img/food.png",
         spr: null
     },
-    tolerance: 16
+    tolerance: 32
 })
 
 feedBaby.build = function(context) {

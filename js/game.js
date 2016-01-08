@@ -7,7 +7,8 @@ var Game = function(props){
 Game.prototype = {
     constructor: Game,
     update: function(){},
-    build: function(){}
+    build: function(){},
+    destroy: function(){}
 }
 
 var GameList = function(){
