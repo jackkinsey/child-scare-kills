@@ -1,7 +1,3 @@
-var mouseX = 0;
-var mouseY = 0;
-var clicked = false;
-
 var Context = function(width, height, worldVar){
     
     this.width = width;
@@ -73,12 +69,4 @@ var initialize = function(){
     document.getElementById("gameholder").appendChild(renderer.domElement);
     document.addEventListener("mousemove", onMouseMove, false);
     draw();
-}
-
-function onMouseMove(event) {
-    var leftSide = 10; //TODO Jack plz
-    mouseX = event.clientX - leftSide;
-    var topSide = 10;
-    mouseY = event.clientY - topSide;
-    clicked = event.isMouseDown;
 }

@@ -1,6 +1,6 @@
 var Game = function(options){
 
-    
+    this.objects = options["objects"];
     
 }
 
