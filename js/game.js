@@ -41,4 +41,4 @@ GameList.prototype = {
     }
 }
 
-var games = new GameList();
+Scary.controller.games = new GameList();

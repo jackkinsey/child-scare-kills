@@ -45,4 +45,4 @@ feedBaby.update = function(mouse, delta) {
     }
 };
 
-games.addGame(feedBaby);
+Scary.controller.newGame(feedBaby);

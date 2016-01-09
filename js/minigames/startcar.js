@@ -13,7 +13,8 @@ var startCar = new Game({
         on: false,
         src: "img/keyhole.png",
         spr: null
-    }
+    },
+    won: false
 });
 
 startCar.build = function(context) {
@@ -37,9 +38,15 @@ startCar.update = function(mouse, delta) {
     }
     
     if (Scary.keyboard.space) {
-        if (this.props.keyhole.on) console.log('you win!'); //win
-        else console.log('you lose.'); //lose
+        if(!this.props.won){
+            if (this.props.keyhole.on){
+                console.log('you win!'); //win
+                this.props.won = true;
+            } else {
+                console.log('you lose.'); //lose
+            }
+        }
     }
 };
 
-games.addGame(startCar);
+Scary.controller.newGame(startCar);
