@@ -16,7 +16,7 @@ Controller.prototype = {
     },
     play: function(context){
         this.timer.start();
-        this.games.buildGame("random", context);
+        this.games.buildGame(2, context);
     },
     clickHandler: function(event, context){
         if(event.target.id == "play-button"){
