@@ -27,16 +27,16 @@ var jumperCables = new Game({
         zIndex: -1,
         widthX: 480,
         widthY: 400,
-        src: "img/battery.png",
+        src: "img/dead-battery.png",
         spr: null
     },
     positiveTerm: {
-    	posX: 670,
-    	posY: 300
+    	posX: 420,
+    	posY: 375
     },
     negativeTerm: {
-    	posX: 340,
-    	posY: 300
+    	posX: 560,
+    	posY: 375
     },
     tolerance: 64
 });

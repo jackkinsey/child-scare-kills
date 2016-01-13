@@ -3,6 +3,8 @@
  */
 
 
+/* global Scary */
+
 var changeTire = new Game({
     tire: {
         posX: 100,
