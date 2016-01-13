@@ -14,6 +14,8 @@ var Context = function(width, height, worldVar){
     this.mouse = null;
     this.keyboard = null;
     
+    this.controller = null;
+    
     this.worldVar = worldVar;
     
     this.DOM = {};
@@ -70,14 +72,34 @@ var draw = function(){
     requestAnimationFrame(draw);
     
     Scary.delta = Scary.clock.getDelta();
-    games.update(Scary.mouse, Scary.delta);
+    Scary.controller.update(Scary);
     
     Scary.renderer.render(Scary.scene, Scary.camera);
 }
 
 var initialize = function(){
-    document.getElementById("gameholder").appendChild(Scary.renderer.domElement);
+    Scary.DOM = {
+        gameholder: document.getElementById("gameholder"),
+        gamerel: document.getElementById("gamerel"),
+        
+        title: document.getElementById("title"),
+        
+        timer: document.getElementById("timer"),
+        health: document.getElementById("health"),
+        
+        countdown: document.getElementById("countdown"),
+        
+        menu: document.getElementById("menu"),
+        play: document.getElementById("play-button"),
+        score: document.getElementById("score-button"),
+        options: document.getElementById("options-button")
+    }
+    Scary.DOM.gameholder.appendChild(Scary.renderer.domElement);
     Scary.mouse.injectInto(Scary.renderer.domElement);
-    games.buildGame(0, Scary);
+    Scary.keyboard.injectInto(document);
+    Scary.DOM.play.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
+    //Scary.DOM.score.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
+    //Scary.DOM.options.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
+    //games.buildGame(1, Scary);
     draw();
 }
