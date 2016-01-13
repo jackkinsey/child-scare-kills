@@ -12,13 +12,13 @@ var feedBaby = new Game({
         posX: 200,
         posY: 400,
         zIndex: 0,
-        widthX: 32,
-        widthY: 32,
+        widthX: 64,
+        widthY: 64,
         lift: false,
         src: "img/food.png",
         spr: null
     },
-    tolerance: 16
+    tolerance: 32
 })
 
 feedBaby.build = function(context) {
@@ -45,4 +45,4 @@ feedBaby.update = function(mouse, delta) {
     }
 };
 
-games.addGame(feedBaby);
+Scary.controller.newGame(feedBaby);
