@@ -1,7 +1,7 @@
 var feedBaby = new Game({
     baby: {
-        posX: 100,
-        posY: 100,
+        posX: 500,
+        posY: 300,
         zIndex: -1,
         widthX: 128,
         widthY: 128,
@@ -9,10 +9,10 @@ var feedBaby = new Game({
         spr: null
     },
     food: {
-        posX: 200,
-        posY: 400,
-        initX: 200,
-        initY: 400,
+        posX: 100,
+        posY: 900,
+        initX: 100,
+        initY: 900,
         zIndex: 0,
         widthX: 64,
         widthY: 64,
