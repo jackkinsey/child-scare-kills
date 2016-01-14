@@ -52,6 +52,8 @@ Context.prototype = {
     addSprite: function(width, height, file, pos){
         
         var tex = new THREE.ImageUtils.loadTexture(file);
+        tex.minFilter = THREE.NearestFilter;
+        tex.magFilter = THREE.NearestFilter;
         var mat = new THREE.SpriteMaterial({map: tex});
         var spr = new THREE.Sprite(mat);
         spr.scale.set(width, height, 1);
