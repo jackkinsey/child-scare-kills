@@ -7,8 +7,8 @@
 
 var changeTire = new Game({
     tire: {
-        posX: 100,
-        posY: 100,
+        posX: 500,
+        posY: 300,
         zIndex: -1,
         widthX: 256,
         widthY: 256,
@@ -17,9 +17,9 @@ var changeTire = new Game({
     },
     lugnuts: [
             {
-                posX: 300,
-                posY: 300,
-                initY: 300,
+                posX: 25*Math.cos((2*Math.PI*1)/5 + Math.PI/2),
+                posY: 25*Math.sin((2*Math.PI*1)/5 + Math.PI/2),
+                initY: 25*Math.sin((2*Math.PI*1)/5 + Math.PI/2),
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
@@ -29,9 +29,9 @@ var changeTire = new Game({
                 spr: null
             },
             {
-                posX: 270,
-                posY: 270,
-                initY: 270,
+                posX: 25*Math.cos((2*Math.PI*2)/5 + Math.PI/2),
+                posY: 25*Math.sin((2*Math.PI*2)/5 + Math.PI/2),
+                initY: 25*Math.sin((2*Math.PI*2)/5 + Math.PI/2),
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
@@ -41,9 +41,9 @@ var changeTire = new Game({
                 spr: null
             },
             {
-                posX: 285,
-                posY: 240,
-                initY: 240,
+                posX: 25*Math.cos((2*Math.PI*3)/5 + Math.PI/2),
+                posY: 25*Math.sin((2*Math.PI*3)/5 + Math.PI/2),
+                initY: 25*Math.sin((2*Math.PI*3)/5 + Math.PI/2),
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
@@ -53,9 +53,9 @@ var changeTire = new Game({
                 spr: null
             },
             {
-                posX: 315,
-                posY: 240,
-                initY: 240,
+                posX: 25*Math.cos((2*Math.PI*4)/5 + Math.PI/2),
+                posY: 25*Math.sin((2*Math.PI*4)/5 + Math.PI/2),
+                initY: 25*Math.sin((2*Math.PI*4)/5 + Math.PI/2),
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
@@ -65,9 +65,9 @@ var changeTire = new Game({
                 spr: null
             },
             {
-                posX: 330,
-                posY: 270,
-                initY: 270,
+                posX: 25*Math.cos((2*Math.PI*5)/5 + Math.PI/2),
+                posY: 25*Math.sin((2*Math.PI*5)/5 + Math.PI/2),
+                initY: 25*Math.sin((2*Math.PI*5)/5 + Math.PI/2),
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
