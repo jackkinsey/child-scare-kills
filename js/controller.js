@@ -29,7 +29,7 @@ Controller.prototype = {
         this.timer.start();
         this.gameCount = 8;
         context.DOM.health.innerHTML = "8";
-        this.games.buildGame("random", context);
+        this.games.buildGame(3, context);
     },
     clickHandler: function(event, context){
         if(event.target.id == "play-button"){
