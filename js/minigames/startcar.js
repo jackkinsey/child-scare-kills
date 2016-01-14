@@ -4,8 +4,8 @@
 
 var startCar = new Game({
     keyhole: {
-        posX: 100,
-        posY: 100,
+        posX: 500,
+        posY: 300,
         zIndex: -1,
         widthX: 128,
         widthY: 128,
