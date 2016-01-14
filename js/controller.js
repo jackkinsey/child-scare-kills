@@ -15,7 +15,7 @@ Controller.prototype = {
             if(this.gameCount == 0){
                 this.gameover(context);
             } else {
-                this.games.buildGame(0, context);
+                this.games.buildGame("random", context);
             }
         } else {
             context.DOM.timer.innerHTML = this.timer.getElapsedTime().toFixed(1);
@@ -29,7 +29,7 @@ Controller.prototype = {
         this.timer.start();
         this.gameCount = 8;
         context.DOM.health.innerHTML = "8";
-        this.games.buildGame(0, context);
+        this.games.buildGame("random", context);
     },
     clickHandler: function(event, context){
         if(event.target.id == "play-button"){
