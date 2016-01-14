@@ -55,6 +55,8 @@ Context.prototype = {
         tex.minFilter = THREE.NearestFilter;
         tex.magFilter = THREE.NearestFilter;
         var mat = new THREE.SpriteMaterial({map: tex});
+        mat.minFilter = THREE.NearestFilter;
+        mat.magFilter = THREE.NearestFilter;
         var spr = new THREE.Sprite(mat);
         spr.scale.set(width, height, 1);
         if(pos){
