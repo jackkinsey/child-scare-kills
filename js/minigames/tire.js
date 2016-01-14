@@ -1,4 +1,4 @@
-/* 
+/*
  * Liam McFalls
  */
 
@@ -16,9 +16,10 @@ var changeTire = new Game({
         spr: null
     },
     lugnuts: [
-            lugnut1 = {
+            {
                 posX: 300,
                 posY: 300,
+                initY: 300,
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
@@ -27,9 +28,10 @@ var changeTire = new Game({
                 src: "img/lugnut.png",
                 spr: null
             },
-            lugnut2 = {
+            {
                 posX: 270,
                 posY: 270,
+                initY: 270,
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
@@ -38,9 +40,10 @@ var changeTire = new Game({
                 src: "img/lugnut.png",
                 spr: null
             },
-            lugnut3 = {
+            {
                 posX: 285,
                 posY: 240,
+                initY: 240,
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
@@ -49,9 +52,10 @@ var changeTire = new Game({
                 src: "img/lugnut.png",
                 spr: null
             },
-            lugnut4 = {
+            {
                 posX: 315,
                 posY: 240,
+                initY: 240,
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
@@ -60,9 +64,10 @@ var changeTire = new Game({
                 src: "img/lugnut.png",
                 spr: null
             },
-            lugnut5 = {
+            {
                 posX: 330,
                 posY: 270,
+                initY: 270,
                 zIndex: 0,
                 widthX: 16,
                 widthY: 16,
@@ -95,15 +100,15 @@ changeTire.update = function (mouse, delta) {
                 this.props.lugnuts[i].clicked = true;
             } else if (i == 3 && this.props.lugnuts[1].clicked) {
                 this.props.lugnuts[i].clicked = true;
-                //win
+                return true;
             } else if (i == 1) {
                 if (this.props.lugnuts[4].clicked) {
-                  this.props.lugnuts[i].clicked = true;  
-                } else; //lose
+                  this.props.lugnuts[i].clicked = true;
+                }
             } else {
                 if (this.props.lugnuts[(i-2)%5].clicked) {
-                  this.props.lugnuts[i].clicked = true;  
-                } else; //lose
+                  this.props.lugnuts[i].clicked = true;
+                }
             }
         }
         
@@ -113,7 +118,7 @@ changeTire.update = function (mouse, delta) {
             this.props.lugnuts[i].yVel = 0;
         }
         
-        if (this.props.lugnuts[i].posY < 8) { 
+        if (this.props.lugnuts[i].posY < 8) {
             this.props.lugnuts[i].posY = 8;
             this.props.lugnuts[i].yVel = 0;
         }
@@ -122,6 +127,21 @@ changeTire.update = function (mouse, delta) {
         this.props.lugnuts[i].spr.position.set(this.props.lugnuts[i].posX, this.props.lugnuts[i].posY, this.props.lugnuts[i].zIndex);
         
     }
+    return false;
 };
+
+changeTire.destroy = function(context){
+    context.scene.remove(this.props.tire.spr);
+    this.props.tire.spr = null;
+    var len = this.props.lugnuts.length - 1
+    for(var i = len; i > -1; i--){
+        context.scene.remove(this.props.lugnuts[i].spr);
+        this.props.lugnuts[i].spr = null;
+        this.props.lugnuts[i].posY = this.props.lugnuts[i].initY;
+        this.props.lugnuts[i].yVel = 0;
+        this.props.lugnuts[i].clicked = false;
+    }
+    this.props.won = false;
+}
 
 Scary.controller.newGame(changeTire);

@@ -98,7 +98,7 @@ body{
     text-align:center;
 }
 
-#timer{
+#timer, #health{
     position:absolute;
     width:200px;
     height:50px;
@@ -112,7 +112,14 @@ body{
     font-style:italic;
 }
 
-#menu{
+#health{
+    width:150px;
+    left:calc(50% + 335px);
+    top:calc(50% - 290px);
+    text-align:right;
+}
+
+#menu, #credits{
     position:absolute;
     width:500px;
     height:300px;
@@ -125,17 +132,25 @@ body{
     font-style:italic;
 }
 
-#menu ul{
+#menu ul, #credits ul{
     height:200px;
     margin-top:55px;
 }
 
-#menu ul li{
+#menu ul li, #credits ul li{
     padding:8px;
 }
 
-#menu ul li span{
+#menu ul li span, #credits ul li span{
     cursor:pointer;
+}
+
+#credits{
+    width:900px;
+    height:400px;
+    left:calc(50% - 450px);
+    top:calc(50% - 200px);
+    color:white;
 }
 
 #countdown{

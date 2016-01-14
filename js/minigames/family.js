@@ -1,4 +1,4 @@
-/* 
+/*
  * Liam McFalls
  */
 
@@ -29,8 +29,15 @@ family.build = function(context) {
 
 family.update = function(mouse, delta) {
     if (Math.sqrt(Math.pow(this.props.fam1.posX - mouse.mouseX, 2) + Math.pow(this.props.fam1.posY - mouse.mouseY, 2)) < this.props.tolerance && mouse.mouseState == "down") {
-        //Win
+        return true;
     }
+    return false;
 };
+
+family.destroy = function(context){
+    context.scene.remove(this.props.fam1.spr);
+    this.props.fam1.spr = null;
+    this.props.won = false;
+}
 
 Scary.controller.newGame(family);

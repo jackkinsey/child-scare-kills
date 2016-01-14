@@ -2,6 +2,8 @@ var jumperCables = new Game({
     positive: {
         posX: 100,
         posY: 100,
+        initX: 100,
+        initY: 100,
         zIndex: -1,
         widthX: 120,
         widthY: 200,
@@ -13,6 +15,8 @@ var jumperCables = new Game({
     negative: {
         posX: 200,
         posY: 400,
+    	initX: 200,
+    	initY: 400,
         zIndex: 0,
         widthX: 132,
         widthY: 200,
@@ -86,11 +90,31 @@ jumperCables.update = function(mouse, delta) {
         	this.props.negative.posX = this.props.negativeTerm.posX;
         	this.props.negative.posY = this.props.negativeTerm.posY;
         	this.props.negative.spr.position.set(this.props.negative.posX, this.props.negative.posY, 0);
-        	//win
-        } else {
-        	//lose
+        	return true;
         }
     }
+    return false;
 };
+
+jumperCables.destroy = function(context){
+    context.scene.remove(this.props.positive.spr);
+    context.scene.remove(this.props.negative.spr);
+    context.scene.remove(this.props.battery.spr);
+    context.scene.remove(this.props.positiveTerm.spr);
+    context.scene.remove(this.props.negativeTerm.spr);
+    this.props.positive.spr = null;
+    this.props.negative.spr = null;
+    this.props.battery.spr = null;
+    this.props.positiveTerm.spr = null;
+    this.props.negativeTerm.spr = null;
+    this.props.positive.posX = this.props.positive.initX;
+    this.props.positive.posY = this.props.positive.initY;
+    this.props.positive.attached = false;
+    this.props.positive.lift = false;
+    this.props.negative.posX = this.props.negative.initX;
+    this.props.negative.posY = this.props.negative.initY;
+    this.props.negative.attached = false;
+    this.props.negative.lift = false;
+}
 
 Scary.controller.newGame(jumperCables);

@@ -92,14 +92,16 @@ var initialize = function(){
         menu: document.getElementById("menu"),
         play: document.getElementById("play-button"),
         score: document.getElementById("score-button"),
-        options: document.getElementById("options-button")
+        options: document.getElementById("options-button"),
+        
+        credits: document.getElementById("credits")
     }
     Scary.DOM.gameholder.appendChild(Scary.renderer.domElement);
     Scary.mouse.injectInto(Scary.renderer.domElement);
     Scary.keyboard.injectInto(document);
     Scary.DOM.play.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
     //Scary.DOM.score.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
-    //Scary.DOM.options.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
+    Scary.DOM.options.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
     //games.buildGame(1, Scary);
     draw();
 }
