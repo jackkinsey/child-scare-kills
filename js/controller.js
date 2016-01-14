@@ -15,7 +15,7 @@ Controller.prototype = {
             if(this.gameCount == 0){
                 this.gameover(context);
             } else {
-                this.games.buildGame("random", context);
+                this.games.buildGame(3, context);
             }
         } else {
             context.DOM.timer.innerHTML = this.timer.getElapsedTime().toFixed(1);
