@@ -40,13 +40,20 @@ startCar.update = function(mouse, delta) {
     if (Scary.keyboard.space) {
         if(!this.props.won){
             if (this.props.keyhole.on){
-                console.log('you win!'); //win
                 this.props.won = true;
-            } else {
-                console.log('you lose.'); //lose
+                return true;
             }
         }
     }
+    
+    return false;
 };
+
+startCar.destroy = function(context){
+    context.scene.remove(this.props.keyhole.spr);
+    this.props.keyhole.spr = null;
+    this.props.keyhole.rot = 0;
+    this.props.won = false;
+}
 
 Scary.controller.newGame(startCar);

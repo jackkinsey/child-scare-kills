@@ -11,6 +11,8 @@ var feedBaby = new Game({
     food: {
         posX: 200,
         posY: 400,
+        initX: 200,
+        initY: 400,
         zIndex: 0,
         widthX: 64,
         widthY: 64,
@@ -18,7 +20,8 @@ var feedBaby = new Game({
         src: "img/food.png",
         spr: null
     },
-    tolerance: 32
+    tolerance: 32,
+    won: false
 })
 
 feedBaby.build = function(context) {
@@ -41,8 +44,23 @@ feedBaby.update = function(mouse, delta) {
         this.props.food.spr.position.set(this.props.food.posX, this.props.food.posY, 0);
     }
     if (Math.sqrt(Math.pow(this.props.food.posX - this.props.baby.posX,2) + Math.pow(this.props.food.posY - this.props.baby.posY,2)) < 32 && !this.props.baby.lift) {
-        console.log("You fed baby!");
+        if(!this.props.won){
+            this.props.won = true;
+            return true;
+        }
     }
+    return false;
 };
+
+feedBaby.destroy = function(context){
+    context.scene.remove(this.props.baby.spr);
+    context.scene.remove(this.props.food.spr);
+    this.props.baby.spr = null;
+    this.props.food.spr = null;
+    this.props.food.posX = this.props.food.initX;
+    this.props.food.posY = this.props.food.initY;
+    this.props.food.lift = false;
+    this.props.won = false;
+}
 
 Scary.controller.newGame(feedBaby);
