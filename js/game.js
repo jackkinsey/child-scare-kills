@@ -31,6 +31,9 @@ GameList.prototype = {
                 this.list[this.built].destroy(context);
             }
             var index = Math.floor(Math.random() * (this.list.length));
+            if(index == this.built){
+                index = Math.floor(Math.random() * (this.list.length));
+            }
             this.list[index].build(context);
             this.built = index;
         }
@@ -43,6 +46,10 @@ GameList.prototype = {
         if(game instanceof Game){
             this.list.push(game);
         }
+    },
+    destroyGame: function(context){
+        this.list[this.built].destroy(context);
+        this.built = -1;
     }
 }
 

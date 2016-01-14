@@ -1,4 +1,4 @@
-var Context = function(width, height, worldVar){
+var Context = function(width, height){
     
     this.width = width;
     this.height = height;
@@ -15,8 +15,6 @@ var Context = function(width, height, worldVar){
     this.keyboard = null;
     
     this.controller = null;
-    
-    this.worldVar = worldVar;
     
     this.DOM = {};
     
@@ -94,14 +92,14 @@ var initialize = function(){
         score: document.getElementById("score-button"),
         options: document.getElementById("options-button"),
         
-        credits: document.getElementById("credits")
+        credits: document.getElementById("credits"),
+        creditsback: document.getElementById("credits-back")
     }
     Scary.DOM.gameholder.appendChild(Scary.renderer.domElement);
     Scary.mouse.injectInto(Scary.renderer.domElement);
     Scary.keyboard.injectInto(document);
     Scary.DOM.play.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
-    //Scary.DOM.score.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
     Scary.DOM.options.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
-    //games.buildGame(1, Scary);
+    Scary.DOM.creditsback.addEventListener("click", function(event){Scary.controller.clickHandler(event, Scary)});
     draw();
 }

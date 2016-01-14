@@ -1,4 +1,4 @@
-/* 
+/*
  * Liam McFalls
  */
 
@@ -6,6 +6,8 @@ var maze = new Game({
     baby: {
         posX: 128,
         posY: 512,
+        initX: 128,
+        initY: 512,
         zIndex: 0,
         widthX: 64,
         widthY: 64,
@@ -46,7 +48,9 @@ var maze = new Game({
         src: "img/home.png",
         spr: null
     },
-    tolerance: 64
+    formList: [],
+    tolerance: 64,
+    won: false
 })
 
 maze.build = function (context) {
@@ -69,7 +73,7 @@ maze.build = function (context) {
             else if (y > this.props.path4.startY && y < this.props.path4.startY + this.props.path4.length && Math.abs(x - this.props.path4.startX) < this.props.tolerance)
                 draw = false;
             if (draw) {
-                context.addSprite(64, 64, "img/form.png", {x: x, y: y, z: -1});
+                this.props.formList.push(context.addSprite(64, 64, "img/form.png", {x: x, y: y, z: -1}));
             }
         }
     }
@@ -106,9 +110,27 @@ maze.update = function (mouse, delta) {
     }
 
     if (Math.sqrt(Math.pow(this.props.house.posX - this.props.baby.posX, 2) + Math.pow(this.props.house.posY - this.props.baby.posY, 2)) < 32 && !this.props.baby.lift) {
-        console.log("You fed baby!");
+        if(!this.props.won){
+            this.props.won = true;
+            return true;
+        }
     }
+    return false;
 };
 
-Scary.controller.newGame(maze);
+maze.destroy = function(context){
+    context.scene.remove(this.props.baby.spr);
+    this.props.baby.spr = null;
+    this.props.baby.posX = this.props.baby.initX;
+    this.props.baby.posY = this.props.baby.initY;
+    this.props.baby.lift = false;
+    context.scene.remove(this.props.house.spr);
+    this.props.house.spr = null;
+    var len = this.props.formList.length - 1
+    for(var i = len; i > -1; i--){
+        context.scene.remove(this.props.formList[i]);
+    }
+    this.props.won = false;
+}
 
+Scary.controller.newGame(maze);

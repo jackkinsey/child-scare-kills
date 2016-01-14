@@ -61,7 +61,7 @@ table {
 }
 
 body{
-    #background-color:black;
+    background-color:black;
 }
 
 #gameholder{
@@ -151,6 +151,31 @@ body{
     left:calc(50% - 450px);
     top:calc(50% - 200px);
     color:white;
+}
+
+#credits-back{
+    position:absolute;
+    width:160px;
+    height:50px;
+    left:calc(50% - 490px);
+    top:calc(50% + 250px);
+    line-height:50px;
+    color:yellow;
+    text-align:left;
+    font-family:Start, sans-serif;
+    font-size:40px;
+    font-style:italic;
+    cursor:pointer;
+}
+
+#demonbaby{
+    position:absolute;
+    display:inline-block;
+    width:128px;
+    height:128px;
+    left:calc(50% + 300px);
+    top:calc(50% - 125px);
+    background-image:url("../img/demonspawn.png");
 }
 
 #countdown{
